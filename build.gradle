@@ -1,6 +1,4 @@
 buildscript {
-    
-
     repositories {
         mavenLocal()
         mavenCentral()
@@ -9,10 +7,14 @@ buildscript {
         jcenter()
         google()
     }
+
     dependencies {
-        
 
     }
+}
+
+plugins {
+    id "net.ltgt.apt" version "0.10"
 }
 
 allprojects {
@@ -51,10 +53,12 @@ project(":desktop") {
 
 project(":core") {
     apply plugin: "java-library"
-
+    apply plugin: "net.ltgt.apt"
 
     dependencies {
+        compileOnly 'org.projectlombok:lombok:1.18.10'
+        apt 'org.projectlombok:lombok:1.18.10'
+
         api "com.badlogicgames.gdx:gdx:$gdxVersion"
-        
     }
 }
